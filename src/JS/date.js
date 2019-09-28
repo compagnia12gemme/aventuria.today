@@ -35,13 +35,5 @@ function convertDate (date) {
 document.write("Oggi è il giorno " + convertDate (today));
 
 function convertButton () {
-    var jsDate = $('datepicker').datepicker('getDate');
-    if (jsDate !== null) { 
-        jsDate instanceof Date;
-   
-        document.write("Il giorno selezionato è il  " + convertDate (jsDate.getDate()));
-    }
+    document.write('Il giorno selezionato è il ' + convertDate($('#datepicker').datepicker('getDate')));
 }
-
-
-
