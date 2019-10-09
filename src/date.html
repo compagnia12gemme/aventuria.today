@@ -11,10 +11,13 @@
    
     <script>
         $( function() {
-          $( "#datepicker" ).datepicker();
+          $("#datepicker").datepicker({
+            dateFormat: "dd/mm/yy"
+          })
         } );
-    </script>
         
+    </script>
+
     <script src="JS/date.js"></script>
     <p><script>document.write(monthToDay ())</script></p>
     <script>document.write(seasonToDay ())</script>

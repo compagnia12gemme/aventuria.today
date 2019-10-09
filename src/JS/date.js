@@ -1,6 +1,7 @@
 var today = new Date();
+today.setTime( today.getTime() + today.getTimezoneOffset()*60*1000 );
 
-var godSeason = ['',
+var godMonth = ['',
             'Praios',
             'Rondra',
             'Efferd',
@@ -15,22 +16,30 @@ var godSeason = ['',
             'Rahja',
             'Senza Nome'];
 
-var godMonth = ['',
-            'Firun',
-            'Tsa',
-            'Phex',
-            'Peraine',
-            'Ingerimm',
-            'Rahja',
-            'Praios',
-            'Rondra',
-            'Efferd',
-            'Travia',
-            'Boron',
-            'Hesind',
-            'Senza Nome'];
-
 function monthConvertDate (date) {
+    var days,
+        month;
+    if (today.getFullYear()%4 === 0) {
+        days = Math.ceil((date - new Date(date.getFullYear(),0,1)) / 86400000) - 182;
+    } 
+    else {
+        days = Math.ceil((date - new Date(date.getFullYear(),0,1)) / 86400000) - 181;
+    }
+
+    var i = 1;
+    while (i < godMonth.length) {
+        if (i === Math.ceil(days/30)) { 
+            month = godMonth [i];
+        }
+        else if (days > 360){
+            month = godMonth [13];
+        }
+        i++;
+    }
+    return dayOfWeek (date.getUTCDay()) + ", " + days % 30 + " di " + month + " " + (date.getFullYear() - 977) + " in Aventuria";
+}
+
+function seasonConvertDate (date) {
     var days = Math.ceil((date - new Date(date.getFullYear(),0,1)) / 86400000),
         month;
 
@@ -44,41 +53,34 @@ function monthConvertDate (date) {
         }
         i++;
     }
-    return days + " di " + month + " in Aventuria";
+    return dayOfWeek (date.getUTCDay()) + ", " + days % 30 + " di " + month + " " + (date.getFullYear() - 977) + " in Aventuria";
 }
 
-document.write (Math.ceil((date - new Date(date.getFullYear(),0,1))));
-
-function seasonConvertDate (date) {
-    var days = Math.ceil((date - new Date(date.getFullYear(),0,1)) / 86400000),
-        month;
-
-    var i = 1;
-    while (i < godSeason.length) {
-        if (i === Math.ceil(days/30)) { 
-            month = godSeason [i];
-        }
-        else if (days > 360){
-            month = godSeason [13];
-        }
-        i++;
-    }
-    return days + " di " + month + " in Aventuria";
+function dayOfWeek (numDayOfWeek) {
+    var week = ['Rohalstag',
+                'Feuertag',
+                'Wassertag',
+                'Windstag',
+                'Erd(s)tag',
+                'Markttag',
+                'Praiostag'];
+                
+    return week [numDayOfWeek];
 }
 
 function monthConvertButton () {
-    document.write('Il giorno selezionato è il ' + monthConvertDate($('#datepicker').datepicker('getDate')));
+    document.write('Il giorno selezionato è  ' + monthConvertDate($('#datepicker').datepicker('getDate')));
 }
 
 function seasonConvertButton () {
-    document.write('Il giorno selezionato è il ' + seasonConvertDate($('#datepicker').datepicker('getDate')));
+    document.write('Il giorno selezionato è  ' + seasonConvertDate($('#datepicker').datepicker('getDate')));
 }
 
 function monthToDay () {
-    return ("Oggi è il giorno " + monthConvertDate (today) + " (ordine mesi)");
+    return ("Oggi è " + monthConvertDate (today) + " (ordine mesi)");
 }
 
 function seasonToDay () {
-    return ("Oggi è il giorno " + seasonConvertDate (today) + " (ordine stagioni)");
+    return ("Oggi è " + seasonConvertDate (today) + " (ordine stagioni)");
 }
 
