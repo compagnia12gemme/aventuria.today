@@ -5,25 +5,23 @@
     <title>Date</title>
   </head>
   <body>
+
     <link rel="stylesheet" href="jquery/jquery-ui.min.css">
     <script src="jquery/external/jquery/jquery.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
-   
-    <script>
-        $( function() {
-          $("#datepicker").datepicker({
-            dateFormat: "dd/mm/yy"
-          })
-        } );
-        
-    </script>
+
 
     <script src="JS/date.js"></script>
-    <p><script>document.write(monthToDay ())</script></p>
-    <script>document.write(seasonToDay ())</script>
-    
-    <p>Inserisci la data: <input type="text" id="datepicker"></p>
-    <button onclick="monthConvertButton ();">MonthConvert</button>
-    <button onclick="seasonConvertButton ();">SeasonConvert</button>
+    <p><script>document.write(monthToDay())</script></p>
+
+    <script>document.write(seasonToDay())</script>
+
+    <form id="formDate">
+      <p>Inserisci la data: <input type="date" id="datepicker" required pattern="\d{4}-\d{2}-\d{2}"></p>
+      <span class="validity"></span>
+      <button onclick="monthConvertButton ();">MonthConvert</button>
+      <button onclick="seasonConvertButton ();">SeasonConvert</button>
+    </form>
+
   </body>
 </html>

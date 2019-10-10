@@ -16,7 +16,8 @@ var godMonth = ['',
             'Rahja',
             'Senza Nome'];
 
-function monthConvertDate (date) {
+function monthConvertDate (dateSelected) {
+    var date = new Date (dateSelected);
     var days,
         month;
     if (today.getFullYear()%4 === 0) {
@@ -39,7 +40,8 @@ function monthConvertDate (date) {
     return dayOfWeek (date.getUTCDay()) + ", " + days % 30 + " di " + month + " " + (date.getFullYear() - 977) + " in Aventuria";
 }
 
-function seasonConvertDate (date) {
+function seasonConvertDate (dateSelected) {
+    var date = new Date (dateSelected);
     var days = Math.ceil((date - new Date(date.getFullYear(),0,1)) / 86400000),
         month;
 
@@ -69,11 +71,21 @@ function dayOfWeek (numDayOfWeek) {
 }
 
 function monthConvertButton () {
-    document.write('Il giorno selezionato è  ' + monthConvertDate($('#datepicker').datepicker('getDate')));
+    if (document.getElementById("datepicker").value !== "") {
+        document.write('Il giorno selezionato è  ' + monthConvertDate(document.getElementById("datepicker").value));
+    } 
+    else {
+        document.write('Non è stata inserita alcuna data');
+    }
 }
 
 function seasonConvertButton () {
-    document.write('Il giorno selezionato è  ' + seasonConvertDate($('#datepicker').datepicker('getDate')));
+    if (document.getElementById("datepicker").value !== "") {
+        document.write('Il giorno selezionato è  ' + seasonConvertDate(document.getElementById("datepicker").value));
+    }
+    else {
+        document.write('Non è stata inserita alcuna data');
+    }
 }
 
 function monthToDay () {
