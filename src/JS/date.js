@@ -72,19 +72,19 @@ function dayOfWeek (numDayOfWeek) {
 
 function monthConvertButton () {
     if (document.getElementById("datepicker").value !== "") {
-        document.write('Il giorno selezionato è  ' + monthConvertDate(document.getElementById("datepicker").value));
+        alert ('Il giorno selezionato è ' + monthConvertDate(document.getElementById("datepicker").value));
     } 
     else {
-        document.write('Non è stata inserita alcuna data');
+        document.getElementById ('noDate').innerHTML = 'Non è stata inserita alcuna data';
     }
 }
 
 function seasonConvertButton () {
     if (document.getElementById("datepicker").value !== "") {
-        document.write('Il giorno selezionato è  ' + seasonConvertDate(document.getElementById("datepicker").value));
+        alert ('Il giorno selezionato è ' + seasonConvertDate(document.getElementById("datepicker").value));
     }
     else {
-        document.write('Non è stata inserita alcuna data');
+        document.getElementById ('noDate').innerHTML = 'Non è stata inserita alcuna data';
     }
 }
 
